@@ -1,0 +1,29 @@
+# %%
+
+import pandas as pd
+
+
+supermarkets = ['acacia', 'acacia', 'acacia', 'acacia', 'nakumatt', 'tuskys',
+                'chandarana', 'nakumatt', 'nakumatt', 'nakumatt', 'nakumatt',
+                'uchumui', 'naivas', 'naivas', 'naivas', 'naivas',
+                'naivas', 'naivas', 'naivas', 'karrymart', 'karrymart']
+
+no_of_items = [1, 2, 6, 8, 33, 44, 14, 6, 8, 9, 6, 5, 1,
+               2, 3, 6, 7, 5, 8, 10, 23]
+
+variation = [1, 1, 2, 2, 13, 6, 2, 1, 3, 1, 1, 4, 2, 3,
+             1, 1, 3, 2, 1, 2, 1, 2, 2, 6]
+
+total = [90, 70, 270, 137, 5611, 55, 7955, 780, 235, 13005, 431, 1000, 242,
+         4926, 5439, 5439, 8110, 221, 584, 850, 90]
+
+KEsupermarket = list(zip(supermarkets, no_of_items, variation, total))
+
+print(KEsupermarket)
+
+df = pd.DataFrame(data=KEsupermarket, columns=['supermarkets', 'no_of_items',
+                  'variation', 'total'])
+
+print(df)
+
+# %%

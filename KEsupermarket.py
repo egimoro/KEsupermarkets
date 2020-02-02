@@ -26,4 +26,10 @@ df = pd.DataFrame(data=KEsupermarket, columns=['supermarkets', 'no_of_items',
 
 print(df)
 
+Sorted = df.sort_values(['supermarkets'], ascending=False)
+
+Sorted.head(1)
+
+df['no_of_items'].max()
+
 # %%

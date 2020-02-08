@@ -1,4 +1,5 @@
 {
     "python.linting.enabled": true,
-    "python.linting.flake8Enabled": true
+    "python.linting.flake8Enabled": true,
+    "python.pythonPath": "C:\\Users\\gimor\\AppData\\Local\\Programs\\Python\\Python38-32\\python.exe"
 }

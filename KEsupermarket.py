@@ -2,6 +2,7 @@
 
 import pandas as pd
 import matplotlib.pyplot as plt
+from numpy import random
 
 
 supermarkets = ['acacia', 'acacia', 'acacia', 'acacia', 'nakumatt', 'tuskys',
@@ -82,5 +83,41 @@ df = pd.read_csv(Location, names=['supermarkets', 'no_of_items',
                                   'variation', 'total'])
 
 df
+
+# %%
+
+random.seed(500)
+
+random_supermarkets = [supermarkets[random.randint(low=0,
+                       high=len(supermarkets))] for i in range(1000)]
+
+random_supermarkets
+
+# %%
+
+random_supermarkets[:10]
+
+# %%
+
+total_price = [random.randint(low=0, high=1000) for i in range(1000)]
+
+total_price
+
+# %%
+
+total_price[:10]
+
+# %%
+
+SuperMarketDataSet = list(zip(random_supermarkets, total_price))
+
+SuperMarketDataSet[:10]
+
+# %%
+
+df = pd.DataFrame(data=SuperMarketDataSet, columns=['Supermarkets', 'Total'])
+
+df[:10]
+
 
 # %%

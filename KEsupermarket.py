@@ -20,14 +20,14 @@ total = [90, 70, 270, 137, 5611, 55, 7955, 780, 235, 13005, 431, 1000, 242,
 
 KEsupermarket = list(zip(supermarkets, no_of_items, variation, total))
 
-print(KEsupermarket)
+KEsupermarket
 
 # %%
 
 df = pd.DataFrame(data=KEsupermarket, columns=['supermarkets', 'no_of_items',
                   'variation', 'total'])
 
-print(df)
+df
 
 # %%
 
@@ -37,7 +37,7 @@ Sorted.head(1)
 
 # %%
 
-print(df['no_of_items'].max())
+df['no_of_items'].max()
 
 # %%
 
@@ -57,5 +57,30 @@ print("The most popular supermarket")
 
 df[df['supermarkets'] == df['supermarkets'].max()]
 
+
+# %%
+
+df.to_csv('KEsupermarkets.csv', index=False, header=False)
+
+# %%
+
+Location = '../KEsupermarkets/KEsupermarkets.csv'
+
+df = pd.read_csv(Location)
+
+df
+
+# %%
+
+df = pd.read_csv(Location, header=None)
+
+df
+
+# %%
+
+df = pd.read_csv(Location, names=['supermarkets', 'no_of_items',
+                                  'variation', 'total'])
+
+df
 
 # %%

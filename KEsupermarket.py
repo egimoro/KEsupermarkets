@@ -121,3 +121,35 @@ df[:10]
 
 
 # %%
+
+df.to_csv('KEsupermarkets.txt', index=False, header=False)
+
+# %%
+
+Location = r'../KEsupermarkets/KEsupermarkets.txt'
+
+df = pd.read_csv(Location)
+
+df.info()
+
+# %%
+
+df.head()
+
+# %%
+
+df = pd.read_csv(Location, header=None)
+
+df.info()
+
+# %%
+
+df.tail()
+
+# %%
+
+df = pd.read_csv(Location, names=['Supermarkets', 'Total'])
+
+df.head(5)
+
+# %%

@@ -153,3 +153,59 @@ df = pd.read_csv(Location, names=['Supermarkets', 'Total'])
 df.head(5)
 
 # %%
+
+df = pd.read_csv(Location, header=None)
+
+df.info()
+
+# %%
+
+df.tail()
+
+# %%
+
+df = pd.read_csv(Location, names=['Supermarkets', 'Total'])
+
+df.head()
+
+# %%
+
+df['Supermarkets'].unique()
+
+# %%
+
+for x in df['Supermarkets'].unique():
+    print(x)
+
+# %%
+
+print(df['Supermarkets'].describe())
+
+# %%
+
+supermarket = df.groupby('Supermarkets')
+
+df = supermarket.sum()
+
+df
+
+# %%
+
+Sorted = df.sort_values(['Total'], ascending=False)
+
+Sorted.head(1)
+
+# %%
+
+df['Total'].max()
+
+# %%
+
+df['Total'].plot.bar()
+
+print('The most popular supermarket')
+
+df.sort_values(by='Total', ascending=False)
+
+
+# %%

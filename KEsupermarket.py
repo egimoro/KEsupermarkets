@@ -3,6 +3,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from numpy import random
+import numpy.random as np
 
 
 supermarkets = ['acacia', 'acacia', 'acacia', 'acacia', 'nakumatt', 'tuskys',
@@ -207,5 +208,61 @@ print('The most popular supermarket')
 
 df.sort_values(by='Total', ascending=False)
 
+
+# %%
+
+np.seed(111)
+
+
+def CreateDataSet(Number=1):
+
+    Output = []
+
+    for i in range(Number):
+        
+        rng = pd.date_range(start='1/1/2016', end='31/12/2019', freq='W-MON')
+
+        data = np.randint(low=25, high=1000, size=len(rng))
+
+        status = [1, 2, 3]
+
+        random_status = [status[np.randint(low=0, 
+                         high=len(status))] for i in range(len(rng))]
+
+        location = ['SA', 'ya', 'KI', 'DO', 'UM', 'EL']
+
+        random_location = [location[np.randint(low=0, 
+                           high=len(location))] for i in range(len(rng))]
+
+        Output.extend(zip(random_location, random_status, data, rng))
+
+    return Output
+
+
+dataset = CreateDataSet(4)
+
+df = pd.DataFrame(data=dataset, columns=['Location', 'Status', 
+                                         'CustomerCount', 'StatusDate'])
+
+df.info()
+
+# %%
+
+df.head()
+
+# %%
+
+df.to_excel('Lesson3.xlsx', index=False)
+print('Done')
+
+# %%
+
+df['Location'].unique()
+
+# %%
+
+df['Location'] = df.Location.apply(lambda x: x.upper())
+
+df['Location'].unique()
 
 # %%

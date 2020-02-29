@@ -266,3 +266,19 @@ df['Location'] = df.Location.apply(lambda x: x.upper())
 df['Location'].unique()
 
 # %%
+
+mask = df['Status'] == 1
+
+df = df[mask]
+
+mask = df.Location == 'SA'
+
+df['Location'][mask] = 'SK'
+
+df['Location'].unique()
+
+# %%
+
+df['CustomerCount'].plot(figsize=(15, 5)) 
+
+# %%

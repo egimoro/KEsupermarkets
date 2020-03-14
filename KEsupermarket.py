@@ -1,10 +1,14 @@
 # %%
 
-import pandas as pd
+# Import libraries
+
+import pandas as pd 
+# Library for plotting
 import matplotlib.pyplot as plt
 from numpy import random
 import numpy.random as np
 
+# Create lists of supermarkets, number of items, and total paid
 
 supermarkets = ['acacia', 'acacia', 'acacia', 'acacia', 'nakumatt', 'tuskys',
                 'chandarana', 'nakumatt', 'nakumatt', 'nakumatt', 'nakumatt',
@@ -20,11 +24,17 @@ variation = [1, 1, 2, 2, 13, 6, 2, 1, 3, 1, 1, 4, 2, 3,
 total = [90, 70, 270, 137, 5611, 55, 7955, 780, 235, 13005, 431, 1000, 242,
          4926, 5439, 5439, 8110, 221, 584, 850, 90]
 
+# Create a data set with a zip function
+
 KEsupermarket = list(zip(supermarkets, no_of_items, variation, total))
+
+# Run the script
 
 KEsupermarket
 
 # %%
+
+# Create another object called datadrame
 
 df = pd.DataFrame(data=KEsupermarket, columns=['supermarkets', 'no_of_items',
                   'variation', 'total'])
@@ -32,6 +42,8 @@ df = pd.DataFrame(data=KEsupermarket, columns=['supermarkets', 'no_of_items',
 df
 
 # %%
+
+# Analysis of the dataframe
 
 Sorted = df.sort_values(['supermarkets'], ascending=False)
 
@@ -42,6 +54,8 @@ Sorted.head(1)
 df['no_of_items'].max()
 
 # %%
+
+# Plot the dataframe
 
 df['variation'].plot()
 
@@ -62,9 +76,13 @@ df[df['supermarkets'] == df['supermarkets'].max()]
 
 # %%
 
+# Export the dataframe into a csv format
+
 df.to_csv('KEsupermarkets.csv', index=False, header=False)
 
 # %%
+
+# Create the variable location to read where the data is stored
 
 Location = '../KEsupermarkets/KEsupermarkets.csv'
 
@@ -74,11 +92,15 @@ df
 
 # %%
 
+# Correct the header because it puts the first values of the data frame as a header
+
 df = pd.read_csv(Location, header=None)
 
 df
 
 # %%
+
+# Create a new header with column names
 
 df = pd.read_csv(Location, names=['supermarkets', 'no_of_items',
                                   'variation', 'total'])
@@ -87,18 +109,27 @@ df
 
 # %%
 
+# Generate a random sample with
+# a random integer between 0 and the length of the list "supermarkets"
+# Loop until i is equal to 1000 supermarkets
+
 random.seed(500)
 
 random_supermarkets = [supermarkets[random.randint(low=0,
                        high=len(supermarkets))] for i in range(1000)]
 
+
 random_supermarkets
 
 # %%
 
+# Print the first 10 records of random supermarkets
+
 random_supermarkets[:10]
 
 # %%
+
+# Apply the same operations with the total price as the previous one
 
 total_price = [random.randint(low=0, high=1000) for i in range(1000)]
 
@@ -110,11 +141,17 @@ total_price[:10]
 
 # %%
 
+# Create a supermarket data set
+
 SuperMarketDataSet = list(zip(random_supermarkets, total_price))
+
+# Print first 10 records of the data set
 
 SuperMarketDataSet[:10]
 
 # %%
+
+# Create the supermarket dataframe and print first 10 records
 
 df = pd.DataFrame(data=SuperMarketDataSet, columns=['Supermarkets', 'Total'])
 
@@ -123,9 +160,13 @@ df[:10]
 
 # %%
 
+# Export the file in csv format but in a text file
+
 df.to_csv('KEsupermarkets.txt', index=False, header=False)
 
 # %%
+
+# Location of file
 
 Location = r'../KEsupermarkets/KEsupermarkets.txt'
 
@@ -171,6 +212,8 @@ df.head()
 
 # %%
 
+# Print unique values
+
 df['Supermarkets'].unique()
 
 # %%
@@ -184,13 +227,19 @@ print(df['Supermarkets'].describe())
 
 # %%
 
+# Create a groupby object
+
 supermarket = df.groupby('Supermarkets')
+
+# Apply the sum function to the groupby object
 
 df = supermarket.sum()
 
 df
 
 # %%
+
+# Analyse data by sorting values
 
 Sorted = df.sort_values(['Total'], ascending=False)
 
@@ -202,6 +251,8 @@ df['Total'].max()
 
 # %%
 
+# Create bar graph
+
 df['Total'].plot.bar()
 
 print('The most popular supermarket')
@@ -211,7 +262,11 @@ df.sort_values(by='Total', ascending=False)
 
 # %%
 
+# Set seed
+
 np.seed(111)
+
+# Function to generate test data
 
 
 def CreateDataSet(Number=1):
@@ -252,6 +307,8 @@ df.head()
 
 # %%
 
+# Save results to excel
+
 df.to_excel('Lesson3.xlsx', index=False)
 print('Done')
 
@@ -261,15 +318,21 @@ df['Location'].unique()
 
 # %%
 
+# Clean Location Column, convert to upper case
+
 df['Location'] = df.Location.apply(lambda x: x.upper())
 
 df['Location'].unique()
 
 # %%
 
+# Only grab where Status == 1
+
 mask = df['Status'] == 1
 
 df = df[mask]
+
+# Convert SA to SK
 
 mask = df.Location == 'SA'
 
@@ -279,6 +342,8 @@ df['Location'].unique()
 
 # %%
 
-df['CustomerCount'].plot(figsize=(15, 5)) 
+# Plot customer data
+
+df['CustomerCount'].plot(figsize=(15, 5))
 
 # %%

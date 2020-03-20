@@ -2,6 +2,8 @@
 
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 # Create a data frame of supermarkets
 
@@ -91,3 +93,37 @@ total_items_bought = df.no_of_items.sum()
 total_items_bought
 
 # %%
+
+# Find unit item price from total
+
+price = (df['total']/df['no_of_items']).sum()
+
+print('Total unit price item is: KSH ' + str(np.round(price, 2)))
+
+# %%
+
+# Set seaborn graphs to a better style
+
+sns.set(style='ticks')
+
+# Group by location
+
+Location = df.groupby('location').sum()
+
+# Sort the value and get the second 10 locations
+
+Location = Location.sort_values(by='no_of_items', ascending=False)[1:11]
+
+# Create the plot
+
+Location['no_of_items'].plot(kind='bar')
+
+# Set the title and labels
+
+plt.xlabel('Location')
+plt.ylabel('Number of items')
+plt.title('10 Locations with most items')
+
+# Show the plot
+
+plt.show()

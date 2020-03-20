@@ -59,3 +59,35 @@ df = pd.read_csv(Location)
 df
 
 # %%
+
+# Supermarkets where most items were bought
+
+s = df.groupby('supermarket')
+
+s = s.sum()
+
+s = s.sort_values(['no_of_items'], ascending=False)
+
+s.head(1)
+
+# %%
+
+# Locations where most items were bought
+
+s = df.groupby('location')
+
+s = s.sum()
+
+s = s.sort_values(['no_of_items'], ascending=False)
+
+s.head(1)
+
+# %%
+
+# Total items bought
+
+total_items_bought = df.no_of_items.sum()
+
+total_items_bought
+
+# %%

@@ -3,7 +3,8 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import seaborn as sns
+
+# %%
 
 # Create a data frame of supermarkets
 
@@ -14,7 +15,7 @@ df = pd.DataFrame({'Supermarket': np.random.choice(['acacia', 'chandarana',
                    'type': np.random.choice(['cash', 'card', 'mpesa'],
                                             size=1000)})
 
-df                             
+df                  
 
 # %%
 
@@ -102,10 +103,6 @@ print('Total unit price item is: KSH ' + str(np.round(price, 2)))
 
 # %%
 
-# Set seaborn graphs to a better style
-
-sns.set(style='ticks')
-
 # Group by location
 
 Location = df.groupby('location').sum()
@@ -127,3 +124,19 @@ plt.title('10 Locations with most items')
 # Show the plot
 
 plt.show()
+
+# %%
+
+# Find the unit price
+
+unitPrice = df['total']/df['no_of_items']
+
+unitPrice
+
+# %%
+
+# Add the new column
+
+df['unitPrice'] = np.round(unitPrice, 2)
+
+df

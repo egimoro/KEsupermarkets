@@ -287,3 +287,26 @@ df.loc[['afternoon']].iloc[:, 2]
 df.loc[:, ['variation']].iloc[2]
 
 # %%
+
+# Select rows afternoon and morning from the columns total to snack
+
+s = df.loc[['afternoon', 'morning']].iloc[:, 3:9]
+
+s
+
+# %%
+
+# Group selected dataset by column snack
+
+s.groupby('snack').sum()
+
+# %%
+
+# Group by the snack the mean of columns with numeric values
+
+sg = s.groupby('snack').mean()
+
+sg
+
+
+# %%

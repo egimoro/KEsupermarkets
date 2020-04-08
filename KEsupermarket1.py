@@ -3,6 +3,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 # %%
 
@@ -56,6 +57,8 @@ df.index
 # Read full dataset
 
 Location = r'../KEsupermarkets/data.csv'
+
+# %%
 
 df = pd.read_csv(Location)
 
@@ -307,6 +310,89 @@ s.groupby('snack').sum()
 sg = s.groupby('snack').mean()
 
 sg
+
+# %%
+
+# Set seaborn style to white
+
+sns.set_style('white')
+
+# Plot the change column histogram
+
+change = sns.distplot(df.change)
+
+change.set(xlabel='Value', ylabel='Frequency', title='Change')
+
+sns.despine()
+
+# %%
+
+# Create a scatter plot presenting the relationship between change and paid
+
+sns.jointplot(x='change', y='paid', data=df)
+
+# %%
+
+# Create pairplot with relationship between number of items total and paid 
+# from the 3rd to the 150th row
+
+sns.pairplot(df[['no_of_items', 'total', 'paid']].iloc[2:150])
+
+# %%
+
+# Present the relationship between locations and total value
+
+sns.stripplot(x='location', y='total', 
+              data=df[(df['location'] == 'saika') | (df['location'] == 
+                                                     'kilimani')
+                      | (df['location'] == 'umoja')
+                      | (df['location'] == 'cbd')].iloc[10:400], jitter=True)
+
+# %%
+
+# Create a scatter plot with the day as the y-axis and change,
+# differ by consumables
+
+sns.stripplot(x='change', y='day', hue='consumables', data=df, jitter=True)
+
+# %%
+
+# Create a box plot with loc_category as x-axis and y-axis 
+# total differ by item_no_cat
+
+sns.boxplot(x='loc_category', y='total', hue='item_no_cat', 
+            data=df.iloc[20:402])
+
+# %%
+
+# Better seaborn style
+
+sns.set(style='ticks')
+
+# Creates FacetGrid
+
+g = sns.FacetGrid(df, col='loc_category')
+
+g.map(plt.hist, 'change')
+
+# %%
+
+# Create two scatterplots graphs, with mall column, 
+# presenting the total value and change relationship, differing by asset column
+
+g = sns.FacetGrid(df.iloc[52:456], col='mall', hue='asset')
+
+g.map(plt.scatter, 'total', 'change', alpha=.7)
+
+g.add_legend()
+
+# %%
+
+# %%
+
+
+# %%
+
 
 
 # %%

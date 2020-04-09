@@ -62,6 +62,8 @@ Location = r'../KEsupermarkets/data.csv'
 
 df = pd.read_csv(Location)
 
+# %%
+
 df
 
 # %%
@@ -388,11 +390,51 @@ g.add_legend()
 
 # %%
 
+# Define reusable function
+
+
+def fraction(x):
+    return 1/5*x
+
+# Multiply selection of paid column by a fifth
+
+
+fraction(df['paid'].iloc[70:270])
 # %%
 
+# Multiply selection of total and change columns by a fifth
+
+
+fraction(df[['total', 'change']].iloc[45:96])
 
 # %%
 
+# Define function with multiple parametres
 
+
+def estimate(x, y):
+    return x/y+y*0.32
+
+
+np.round(estimate(df['change'].iloc[65:104], df['total'].iloc[65:104]), 2)
+
+
+# %%
+
+np.round(estimate(df['paid'].iloc[65:104], df['total'].iloc[65:104]), 2)
+
+
+# %%
+
+# Apply a function with condition
+
+def benchmark(x):
+    if x > 1500:
+        return x*.32
+    else:
+        return x*.68
+
+
+np.round(df['change'].iloc[9:63].apply(benchmark), 2)
 
 # %%

@@ -438,3 +438,9 @@ def benchmark(x):
 np.round(df['change'].iloc[9:63].apply(benchmark), 2)
 
 # %%
+
+np.round(df['total'].iloc[56:163].apply(benchmark), 2)
+
+# %%
+
+
